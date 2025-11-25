@@ -50,19 +50,19 @@ def area_of_an_equilateral_triangle(side_length: float) -> int:
 
 def calculate_discriminant(a: int, b: int, c: int) -> int:
     """Calculate discriminant with given variables and return the result."""
-    discriminant = 1
+    discriminant = b ** 2 - 4 * a * c
     return discriminant
 
 
 def calculate_hypotenuse_length(a: int, b: int) -> float:
     """Return the length of hypotenuse when the lengths of the catheti are given."""
-    c = 1.0
+    c = math.sqrt(a ** 2 + b ** 2)
     return c
 
 
 def calculate_cathetus_length(a: int, c: int) -> float:
     """Return the length of cathetus when the lengths of the second cathetus and hypotenuse are given."""
-    b = 2.1
+    b = math.sqrt(c ** 2 - a ** 2)
     return b
 
 
@@ -95,3 +95,87 @@ if __name__ == '__main__':
 
     area_of_a_circle_result = area_of_a_circle(3)
     assert 28.269 < area_of_a_circle_result < 28.271, f"{area_of_a_circle_result}"
+
+    """Math exercises vol2."""
+    import math
+
+
+    def time_converter(seconds: int) -> str:
+        """Convert time in seconds to hours and minutes."""
+        hours = seconds // 3600
+        minutes = (seconds % 3600) // 60
+        return f"{seconds} sekundit on {hours} tund(i) ja {minutes} minut(it)."
+
+
+    def student_helper(angle: int) -> str:
+        """Return the sine and cosine of the given angle in degrees."""
+        radians = math.radians(angle)
+        sine = round(math.sin(radians), 1)
+        cosine = round(math.cos(radians), 1)
+        return f"Nurk: {angle}, siinus: {sine}, koosinus: {cosine}."
+
+
+    def greetings(n: int) -> str:
+        """Return a string that contains "Hey" n times."""
+        lots_of_heys = "Hey" * n
+        return lots_of_heys
+
+
+    def adding_numbers(num_a: int, num_b: int) -> str:
+        """Return given numbers added together as a string."""
+        string_numbers = str(num_a) + str(num_b)
+        return string_numbers
+
+
+    """Basic function exercises."""
+    import math
+
+
+    def print_hello():
+        """Print "hello"."""
+        print("Hello")
+
+
+    def get_hello() -> str:
+        """Return "hello"."""
+        return "Hello"
+
+
+    def ask_name_and_greet_user():
+        """
+        Ask name and greet user.
+
+        The user has to enter his/her name. The function prints the greeting.
+
+        Regular greeting: Hi, [name]. Would you like to have a Hamburger?
+        [name] is capitalized, meaning first letter is capital, the rest is lower.
+
+        If the name is Thanos (case insensitive, so thanos and THANOS also count):
+        Get out of here, Thanos! Nobody wants to play with you!
+        """
+        name = input("Sisesta nimi: ")
+        regular_greeting = f"Hi, {name.capitalize()}. Would you like to have a Hamburger?"
+        thanos_greeting = "Get out of here, Thanos! Nobody wants to play with you!"
+        if name.lower() == "thanos":
+            print(thanos_greeting)
+        else:
+            print(regular_greeting)
+
+
+    def calculate_hypotenuse_length(a: float, b: float) -> float:
+        """Return hypotenuse value."""
+
+
+
+    def calculate_cathetus_length(a: float, c: float) -> float:
+        """Return cathetus value."""
+        # code here
+
+
+    if __name__ == '__main__':
+        print_hello()  # should print "Hello"
+        hello = get_hello()  # should return "Hello"
+        print(hello)  # let's check the value of hello variable
+        ask_name_and_greet_user()  # should ask name and greet
+        print(calculate_hypotenuse_length(3, 4))  # should print 5.0
+        print(calculate_cathetus_length(3, 5))  # should print 4.0
