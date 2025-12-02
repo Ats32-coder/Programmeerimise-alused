@@ -164,12 +164,14 @@ if __name__ == '__main__':
 
     def calculate_hypotenuse_length(a: float, b: float) -> float:
         """Return hypotenuse value."""
-
+        c = math.sqrt(a ** 2 + b ** 2)
+        return c
 
 
     def calculate_cathetus_length(a: float, c: float) -> float:
         """Return cathetus value."""
-        # code here
+        b = math.sqrt(c ** 2 - a ** 2)
+        return b
 
 
     if __name__ == '__main__':
@@ -179,3 +181,36 @@ if __name__ == '__main__':
         ask_name_and_greet_user()  # should ask name and greet
         print(calculate_hypotenuse_length(3, 4))  # should print 5.0
         print(calculate_cathetus_length(3, 5))  # should print 4.0
+
+
+        """Function examples."""
+
+
+        # func()
+        def func():
+            """Print a message I'm inside the function."""
+            print("I´m inside the function")
+
+
+        # my_name_is(name)
+        def my_name_is(name):
+            """Print 'My name is [name]'."""
+            print("My name is " + name)
+
+
+        # sum_six(num)`
+        def sum_six(num: int) -> int:
+            """Return num plus 6."""
+            return num + 6
+
+
+        # sum_numbers()
+        def sum_numbers(num_a: int, num_b: int) -> int:
+            """Return the sum of num_a and num_b."""
+            return num_a + num_b
+
+
+        # usd_to_eur()
+        def usd_to_eur(num_a: int) -> float:
+            """Convert USD to EUR at rate 1 USD = 0.8 EUR."""
+            return num_a * 0.8
