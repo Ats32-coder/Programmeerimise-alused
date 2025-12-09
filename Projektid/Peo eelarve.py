@@ -24,3 +24,4 @@ if __name__ == '__main__':
     min_budget = calculate_budget(confirmed_guests)
     max_budget = calculate_budget(invited_guests)
     print(f"Maksimaalne eelarve on {max_budget} eurot")
+    print(f"Minimaalne eelarve on {min_budget} eurot")
