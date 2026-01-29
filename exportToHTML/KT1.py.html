@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>KT1.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #5f826b; font-style: italic;}
+.s1 { color: #bcbec4;}
+.s2 { color: #cf8e6d;}
+.s3 { color: #bcbec4;}
+.s4 { color: #6aab73;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+KT1.py</font>
+</center></td></tr></table>
+<pre><span class="s0">&quot;&quot;&quot; 
+Küsi kasutaja vanust ja nime 
+&quot;&quot;&quot;</span>
+
+<span class="s2">def </span><span class="s1">name_and_age</span><span class="s3">():</span>
+    <span class="s1">name </span><span class="s3">= </span><span class="s1">input</span><span class="s3">(</span><span class="s4">&quot;Sisesta oma nimi: &quot;</span><span class="s3">)</span>
+    <span class="s1">age </span><span class="s3">= </span><span class="s1">int</span><span class="s3">(</span><span class="s1">input</span><span class="s3">(</span><span class="s4">&quot;Sisesta oma vanus: &quot;</span><span class="s3">))</span>
+    <span class="s1">print</span><span class="s3">(</span><span class="s4">f&quot;Sinu nimi on </span><span class="s2">{</span><span class="s1">name</span><span class="s2">} </span><span class="s4">ja sa oled </span><span class="s2">{</span><span class="s1">age</span><span class="s2">}</span><span class="s4">-aastane.&quot;</span><span class="s3">)</span>
+
+
+<span class="s4">&quot;&quot;&quot; 
+Tervita kasutajat nime pidi niimitu korda kui mitu aastat ta on täisealine olnud (Kordus) 
+&quot;&quot;&quot;</span>
+
+<span class="s2">def </span><span class="s1">user_greeting</span><span class="s3">():</span>
+    <span class="s1">name </span><span class="s3">= </span><span class="s1">input</span><span class="s3">(</span><span class="s4">&quot;Sisesta oma nimi: &quot;</span><span class="s3">)</span>
+    <span class="s1">age </span><span class="s3">= </span><span class="s1">int</span><span class="s3">(</span><span class="s1">input</span><span class="s3">(</span><span class="s4">&quot;Sisesta oma vanus: &quot;</span><span class="s3">))</span>
+    <span class="s1">years </span><span class="s3">= </span><span class="s1">age </span><span class="s3">- </span><span class="s5">18</span>
+    <span class="s2">if </span><span class="s1">age </span><span class="s3">&gt; </span><span class="s5">17</span><span class="s3">:</span>
+        <span class="s2">for </span><span class="s1">i </span><span class="s2">in </span><span class="s1">range</span><span class="s3">(</span><span class="s1">years</span><span class="s3">):</span>
+            <span class="s1">print</span><span class="s3">(</span><span class="s4">f&quot;Tere </span><span class="s2">{</span><span class="s1">name</span><span class="s2">}</span><span class="s4">!&quot;</span><span class="s3">)</span>
+    <span class="s2">else</span><span class="s3">:</span>
+        <span class="s1">print</span><span class="s3">(</span><span class="s4">&quot;Sa ei ole veel täisealine.&quot;</span><span class="s3">)</span>
+
+
+<span class="s4">&quot;&quot;&quot; 
+Kirjuta ekraanile nime lõpust 3 tähte. 
+&quot;&quot;&quot;</span>
+
+<span class="s2">def </span><span class="s1">last_symbols</span><span class="s3">():</span>
+    <span class="s1">name </span><span class="s3">= </span><span class="s1">input</span><span class="s3">(</span><span class="s4">&quot;Sisesta oma nimi: &quot;</span><span class="s3">)</span>
+    <span class="s2">if </span><span class="s1">len</span><span class="s3">(</span><span class="s1">name</span><span class="s3">) &gt; </span><span class="s5">2</span><span class="s3">:</span>
+        <span class="s1">print</span><span class="s3">(</span><span class="s1">name</span><span class="s3">[-</span><span class="s5">3</span><span class="s3">:])</span>
+    <span class="s2">else</span><span class="s3">:</span>
+        <span class="s1">print</span><span class="s3">(</span><span class="s4">&quot;Sinu nimi on lühem kui 3 tähte&quot;</span><span class="s3">)</span>
+
+
+<span class="s2">if </span><span class="s1">__name__ </span><span class="s3">== </span><span class="s4">'__main__'</span><span class="s3">:</span>
+    <span class="s1">name_and_age</span><span class="s3">()</span>
+    <span class="s1">user_greeting</span><span class="s3">()</span>
+    <span class="s1">last_symbols</span><span class="s3">()</span></pre>
+</body>
+</html>
