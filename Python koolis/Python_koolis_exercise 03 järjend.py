@@ -1,5 +1,8 @@
 """
-Lihtsa sõnaraamatu jaoks koosta neli järjendit (arv, eesti, inglise, itaalia) sisuga: arv - 1, 2, 3, 4 eesti - üks, kaks, kolm, neli inglise - one, two, three, four itaalia - uno, due, tre, quattro
+Lihtsa sõnaraamatu jaoks koosta neli järjendit (arv, eesti, inglise, itaalia) sisuga: arv - 1, 2, 3, 4
+eesti - üks, kaks, kolm, neli
+inglise - one, two, three, four
+itaalia - uno, due, tre, quattro
 
 Väljasta kõik elemendid tabelina ekraanile: 1 - üks - one - uno 2 - kaks - two - due ...
 
