@@ -148,7 +148,3 @@ if __name__ == '__main__':
     # isikukood = "31212230156"
     isikukood = "50502100907"
     decode_id_code(isikukood)
-
-
-
-

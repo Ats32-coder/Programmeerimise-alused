@@ -84,7 +84,3 @@ if __name__ == '__main__':
             game_cycle += 1
             if input() == "n":
                 break
-
-
-
-
