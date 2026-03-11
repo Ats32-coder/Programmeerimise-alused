@@ -96,38 +96,3 @@ def pair_star_recursive(s: str) -> str:
     :return: string with stars between identical chars.
     """
     pass
-def find_by_number():
-    """Find name based on the number"""
-    number = input("Sisesta number: ")
-    for name, num in book.items():
-        if num == number:
-            print("Nimi:", name)
-            return
-    print("Numbrit ei leitud.")
-
-def show_all():
-    """Shows the whole phonebook"""
-    for name, number in book.items():
-        print(name, "-", number)
-
-
-def menu():
-    while True:
-        print("\n1 Lisa kontakt")
-        print("2 Otsi nime järgi")
-        print("3 Otsi numbri järgi")
-        print("4 Kuva kõik")
-        print("5 Välju")
-
-        choice = input("Valik: ")
-
-        if choice == "1":
-            add()
-        elif choice == "2":
-            find_by_name()
-        elif choice == "3":
-            find_by_number()
-        elif choice == "4":
-            show_all()
-        elif choice == "5":
-            break
