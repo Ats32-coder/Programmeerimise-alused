@@ -1,4 +1,6 @@
 """Recursion exercises."""
+import sys
+sys.set_int_max_str_digits(10000)
 
 
 def loop_reverse(s: str) -> str:
@@ -64,7 +66,9 @@ def recursive_sum(n: int) -> int:
     :param n: the last number to add to the sum
     :return: sum
     """
-    pass
+    if n == 0:
+        return 0
+    return n + recursive_sum(n - 1)
 
 
 def sum_digits_recursive(number: int) -> int:
@@ -81,7 +85,9 @@ def sum_digits_recursive(number: int) -> int:
     :param number: non-negative number
     :return: sum of digits in the number
     """
-    pass
+    if number < 10:
+        return number
+    return number % 10 + sum_digits_recursive(number // 10)
 
 
 def pair_star_recursive(s: str) -> str:
@@ -95,4 +101,9 @@ def pair_star_recursive(s: str) -> str:
     :param s: input string
     :return: string with stars between identical chars.
     """
-    pass
+    if len(s) <= 1:
+        return s
+    if s[0] == s[1]:
+        return s[0] + "*" + pair_star_recursive(s[1:])
+    else:
+        return s[0] + pair_star_recursive(s[1:])
