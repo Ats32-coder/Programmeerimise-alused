@@ -63,18 +63,24 @@ class Container:
     """Container to transport orders."""
 
     def __init__(self, volume: int, orders: list[Order]):
-        """Initialize container object."""
+        """
+        Initialize container object.
+
+        :param volume: maximum volume of the container.
+        :param orders: list of orders inside the container.
+        """
         self.orders = orders
         self.volume = volume
 
+    @property
     def volume_left(self) -> int:
         """
-        Calculate and return the volume left in
+        Calculate and return the remaining free volume in the container.
+
+        :return: Remaining volume (cm^3), int.
         """
-        order_volume = 0
-        for order in self.orders:
-            order_volume += order.total_volume
-        return self.volume - order_volume
+        used_volume = sum(order.total_volume for order in self.orders)
+        return self.volume - used_volume
 
 
 class OrderAggregator:
@@ -95,29 +101,37 @@ class OrderAggregator:
 
     def aggregate_order(self, customer: str, max_items_quantity: int, max_volume: int):
         """
-        Create an order for customer which contains order lines added by add_item method.
+        Create an order for a customer from available items.
 
-        Iterate over added orders items and add them to order if they are for given customer
-        and can fit to the order.
+        Iterates over added order items and adds them to the order if:
+        - they belong to the given customer
+        - adding them does not exceed max quantity or max volume
+
+        Used items are removed from the aggregator.
 
         :param customer: Customer's name to create an order for.
-        :param max_items_quantity: Maximum amount on items in order.
-        :param max_volume: Maximum volume of order. All items volumes must not exceed this value.
-        :return: Order.
+        :param max_items_quantity: Maximum total quantity of items in the order.
+        :param max_volume: Maximum total volume of the order.
+        :return: Order object.
         """
-        customer_items = []
-        for candidate_item in self.order_items:
-            if candidate_item.customer == customer:
-                customer_items.append(candidate_item)
         customer_order_items = []
-        customer_order_quantity = 0
-        customer_order_volume = 0
-        for customer_item in customer_items:
-            if customer_item.total_volume + customer_order_volume < max_volume and customer_item.quantity + customer_order_quantity < max_items_quantity:
-                customer_order_items.append(customer_item)
-                customer_order_volume += customer_item.total_volume
-                customer_order_quantity += customer_item.quantity
-                self.order_items.remove(customer_item)
+        total_quantity = 0
+        total_volume = 0
+
+        # iterate over a copy to safely remove items
+        for item in list(self.order_items):
+            if item.customer != customer:
+                continue
+
+            if (
+                total_quantity + item.quantity <= max_items_quantity
+                and total_volume + item.total_volume <= max_volume
+            ):
+                customer_order_items.append(item)
+                total_quantity += item.quantity
+                total_volume += item.total_volume
+                self.order_items.remove(item)
+
         return Order(customer_order_items)
 
 
@@ -135,17 +149,49 @@ class ContainerAggregator:
 
     def prepare_containers(self, orders: tuple) -> dict:
         """
-        Create containers and put orders to them.
+        Create containers and assign orders to them by destination.
 
-        If order cannot be put to a container, it is added to self.not_used_orders list.
+        Orders are grouped by destination. For each destination:
+        - orders are placed into the first container where they fit
+        - if no existing container fits, a new container is created
+        - if an order is too large for any container, it is added to not_used_orders
 
-        :param orders: tuple of orders.
-        :return: dict where keys are destinations and values are containers to that destination with orders.
+        :param orders: tuple of Order objects.
+        :return: dict where:
+                 key = destination (str)
+                 value = list of Container objects
         """
-        destination = {}
-        for destination, order in orders:
+        result = {}
 
-        return destination
+        for order in orders:
+            if order.destination is None:
+                continue
+
+            # order too large → cannot be placed
+            if order.total_volume > self.container_volume:
+                self.not_used_orders.append(order)
+                continue
+
+            dest = order.destination
+
+            if dest not in result:
+                result[dest] = []
+
+            placed = False
+
+            # try to fit into existing containers
+            for container in result[dest]:
+                if container.volume_left >= order.total_volume:
+                    container.orders.append(order)
+                    placed = True
+                    break
+
+            # if not placed → create new container
+            if not placed:
+                new_container = Container(self.container_volume, [order])
+                result[dest].append(new_container)
+
+        return result
 
 
 if __name__ == '__main__':
