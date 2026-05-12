@@ -21,7 +21,7 @@ class Service:
         self.queue = []
 
     def can_add_to_service_queue(self, car: Car) -> bool:
-        """Check if it possible to add car to service queue."""
+        """Check if it is possible to add car to service queue."""
         if len(self.queue) >= self.max_car_num:
             return False
         for existing_car in self.queue:
